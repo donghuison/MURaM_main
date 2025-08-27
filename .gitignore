@@ -1,0 +1,13 @@
+CLAUDE.md
+.DS_Store
+.claude/
+*.o
+*.a
+*.x
+*.la
+/lib/fftw3/bin/
+/lib/fftw3/lib/
+/lib/fftw3/include/
+/lib/fftw3/share/
+/lib/fftw3/fftw-3.3.10/
+/lib/fftw3/fftw-3.3.10.tar.gz
