@@ -400,8 +400,9 @@ void sort_full(void)
 void output(void)
 {
   int i, j, k, l, nu, bin, start, len;
-  FILE *outfp;
+  FILE *outfp, *txtfp;
   char fname[100];
+  char fname_txt[100];
   struct member *pLL;
 
   int Nbands_out;
@@ -435,6 +436,13 @@ void output(void)
   }
 
   strcat(fname, ".dat");
+
+  strcpy(fname_txt, fname);
+  char *dot = strrchr(fname_txt, '.');
+  if (dot != NULL)
+    strcpy(dot, ".txt");
+  else
+    strcat(fname_txt, ".txt");
 
   outfp = fopen(fname, "w");
 
@@ -478,4 +486,56 @@ void output(void)
     fwrite(nuout, sizeof(float), Nnu, outfp);
 
   fclose(outfp);
+
+  txtfp = fopen(fname_txt, "w");
+  if (!txtfp)
+  {
+    fprintf(stderr, "Could not open %s for writing\n", fname_txt);
+    return;
+  }
+
+  /* Same information as binary file, in the same order, but in ASCII */
+
+  /* header (8 ints) */
+  for (i = 0; i < 8; i++)
+    fprintf(txtfp, "%d\n", header[i]);
+
+  /* tab_T (NT doubles) */
+  for (j = 0; j < NT; j++)
+    fprintf(txtfp, "%.15e\n", tab_T[j]);
+
+  /* tab_p (Np doubles) */
+  for (k = 0; k < Np; k++)
+    fprintf(txtfp, "%.15e\n", tab_p[k]);
+
+  /* kap_5000 and B_5000 if present */
+  if (BIN5000)
+  {
+    for (j = 0; j < NT; j++)
+      for (k = 0; k < Np; k++)
+        fprintf(txtfp, "%.8e\n", kap_5000[j][k]);
+
+    for (j = 0; j < NT; j++)
+      fprintf(txtfp, "%.8e\n", B_5000[j]);
+  }
+
+  /* kap_mean (Nbands_out * NT * Np floats) */
+  for (i = 0; i < Nbands_out; i++)
+    for (j = 0; j < NT; j++)
+      for (k = 0; k < Np; k++)
+        fprintf(txtfp, "%.8e\n", kap_mean[i][j][k]);
+
+  /* B_band (Nbands_out * NT floats) */
+  for (i = 0; i < Nbands_out; i++)
+    for (j = 0; j < NT; j++)
+      fprintf(txtfp, "%.8e\n", B_band[i][j]);
+
+  /* nuout (Nnu floats) for full ODF mode */
+  if (FULLODF)
+  {
+    for (nu = 0; nu < Nnu; nu++)
+      fprintf(txtfp, "%.8e\n", nuout[nu]);
+  }
+
+  fclose(txtfp);
 }
