@@ -432,13 +432,13 @@ class MURaM_snap:
                'sflx' : loadsflx,
                }
 
-    self.iter = np.int(iter)
+    self.iter = int(iter)
 
     h = np.loadtxt(self.dir+'3D/Header.'+inttostring(iter,ts_size=6))
     
-    self.nz = np.int(h[0])
-    self.nx = np.int(h[1])
-    self.ny = np.int(h[2])
+    self.nz = int(h[0])
+    self.nx = int(h[1])
+    self.ny = int(h[2])
     
     self.dz = h[3]
     self.dx = h[4]
@@ -691,7 +691,7 @@ def congrid(a, newdims, method='linear', centre=False, minusone=False):
             dimlist.append( (old[i] - m1) / (newdims[i] - m1) \
                             * (base + ofs) - ofs )
         # specify old dims
-        olddims = [np.arange(i, dtype = np.float) for i in list( a.shape )]
+        olddims = [np.arange(i, dtype=float) for i in list( a.shape )]
 
         # first interpolation - for ndims = any
         mint = scipy.interpolate.interp1d( olddims[-1], a, kind=method )

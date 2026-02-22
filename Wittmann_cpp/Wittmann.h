@@ -44,4 +44,3 @@ double p_interp(double ee, double dd);
 double s_interp(double ee, double dd);
 
 #endif                // __IONS_WITTMANN__
-

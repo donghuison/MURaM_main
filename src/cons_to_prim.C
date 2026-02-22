@@ -127,8 +127,8 @@ void ConsToPrim(GridData& Grid, const PhysicsData& Physics, const RunData& Run) 
 
         ep = log(eps[i]);
         lr = lgr[i];
-
-	i_d = (int) ( (lr-xlr[0])*inv_del_lr );
+        
+        i_d = (int) ( (lr-xlr[0])*inv_del_lr );
         i_d = max(0,i_d);
         i_d = min(N_lr-2,i_d);
         

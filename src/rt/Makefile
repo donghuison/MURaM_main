@@ -6,7 +6,7 @@ MAKEFILE      = Makefile
 DEST	      = .
 PROGRAM       = mhd3d
 
-OBJS          = rt.o mem.o
+OBJS          = rt_index.o mem.o
 
 SUBDIRS       = 
                 
