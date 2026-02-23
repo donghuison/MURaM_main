@@ -11,5 +11,5 @@ CLAUDE.md
 /lib/fftw3/share/
 /lib/fftw3/fftw-3.3.10/
 /lib/fftw3/fftw-3.3.10.tar.gz
-
 .vscode/
+/RUNDIR/Uppsala_mergedeos_PI_A.txt
