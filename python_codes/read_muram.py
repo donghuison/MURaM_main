@@ -170,26 +170,26 @@ def inttostring(ii,ts_size=6):
 
 def MURaM_output(arr,dir,output,iter = '000000',prim=True, precision = 'single'):
 
-  if output is 'vx':
+  if output == 'vx':
       filename = 'result_2.'
-  if output is 'vy':
+  if output == 'vy':
       filename = 'result_3.'
-  if output is 'vz':
+  if output == 'vz':
       filename = 'result_1.'
-  if output is 'bx':
+  if output == 'bx':
       filename = 'result_6.'
       arr = arr/np.sqrt(4.0*np.pi)
-  if output is 'by':
+  if output == 'by':
       filename = 'result_7.'
       arr = arr/np.sqrt(4.0*np.pi)
-  if output is 'bz':
+  if output == 'bz':
       filename = 'result_5.'
       arr = arr/np.sqrt(4.0*np.pi)
-  if output is 'rho':
+  if output == 'rho':
       filename = 'result_0.'
-  if output is 'eps':
+  if output == 'eps':
       filename = 'result_4.'
-  if output is 'sflx':
+  if output == 'sflx':
       filename = 'result_8.'
 
   if prim: filename=filename.replace('_','_prim_')
@@ -198,9 +198,9 @@ def MURaM_output(arr,dir,output,iter = '000000',prim=True, precision = 'single')
 
   ## Revert to z,x,y ordering
 
-  if (precision is 'double'):
+  if (precision == 'double'):
     arr.astype(np.double)
-  if (precision is 'single'):
+  if (precision == 'single'):
     arr.astype(np.single)
 
   arr.swapaxes(0,1).ravel().tofile(filename)
@@ -482,7 +482,7 @@ class MURaM_snap:
     
     # Make sure rho is loaded first so that vx, vy, vz can be calculated
     for pos in range(np.size(tooload)):
-      if tooload[pos] is 'rho':
+      if tooload[pos] == 'rho':
         tooload.insert(0, tooload.pop(pos))
 
     # Now load everything in too load
