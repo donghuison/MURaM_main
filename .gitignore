@@ -18,3 +18,4 @@ __pycache__/
 /sdh
 *.mod
 /python_codes/*.dat
+/RUNDIR/PSF-kernel*
