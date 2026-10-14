@@ -2,3 +2,6 @@
 *.log
 AGENTS.md
 CONTEXT.md
+
+.DS_Store
+*.pyc
